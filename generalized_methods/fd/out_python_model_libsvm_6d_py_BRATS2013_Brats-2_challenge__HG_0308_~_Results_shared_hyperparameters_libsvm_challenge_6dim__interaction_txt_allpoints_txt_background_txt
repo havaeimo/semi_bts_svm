@@ -1,0 +1,241 @@
+Train/valid/test files exist, loading data...
+Setting hyperparameters gridsearch...
+Training...
+*
+optimization finished, #iter = 59
+nu = 0.017503
+obj = -17.273281, rho = 1.398505
+nSV = 37, nBSV = 23
+Total nSV = 37
+*
+optimization finished, #iter = 70
+nu = 0.017184
+obj = -17.001363, rho = 1.377840
+nSV = 41, nBSV = 25
+Total nSV = 41
+*
+optimization finished, #iter = 78
+nu = 0.016270
+obj = -15.671242, rho = 1.409434
+nSV = 36, nBSV = 20
+Total nSV = 36
+*
+optimization finished, #iter = 78
+nu = 0.017359
+obj = -17.050308, rho = 1.404280
+nSV = 40, nBSV = 23
+Total nSV = 40
+*
+optimization finished, #iter = 58
+nu = 0.017592
+obj = -17.293411, rho = 1.413195
+nSV = 38, nBSV = 23
+Total nSV = 38
+*
+optimization finished, #iter = 66
+nu = 0.014501
+obj = -17.875964, rho = 1.417147
+nSV = 40, nBSV = 25
+*
+optimization finished, #iter = 55
+nu = 0.026289
+obj = -10.944131, rho = -0.045282
+nSV = 26, nBSV = 15
+Total nSV = 26
+*
+optimization finished, #iter = 41
+nu = 0.025816
+obj = -10.852470, rho = -0.015453
+nSV = 25, nBSV = 14
+Total nSV = 25
+*
+optimization finished, #iter = 31
+nu = 0.025195
+obj = -10.386047, rho = 0.009047
+nSV = 23, nBSV = 15
+Total nSV = 23
+*
+optimization finished, #iter = 46
+nu = 0.026701
+obj = -10.882758, rho = 0.080272
+nSV = 24, nBSV = 16
+Total nSV = 24
+*
+optimization finished, #iter = 46
+nu = 0.025509
+obj = -10.447380, rho = -0.015421
+nSV = 24, nBSV = 14
+Total nSV = 24
+*
+optimization finished, #iter = 63
+nu = 0.022101
+obj = -11.597605, rho = 0.016057
+nSV = 29, nBSV = 16
+*
+optimization finished, #iter = 39
+nu = 0.036989
+obj = -13.867454, rho = -0.543147
+nSV = 29, nBSV = 21
+Total nSV = 29
+*
+optimization finished, #iter = 44
+nu = 0.035574
+obj = -13.392637, rho = -0.381169
+nSV = 30, nBSV = 19
+Total nSV = 30
+*
+optimization finished, #iter = 38
+nu = 0.037619
+obj = -14.106404, rho = -0.486319
+nSV = 30, nBSV = 23
+Total nSV = 30
+*
+optimization finished, #iter = 34
+nu = 0.036066
+obj = -13.571173, rho = -0.498492
+nSV = 29, nBSV = 20
+Total nSV = 29
+*
+optimization finished, #iter = 43
+nu = 0.036652
+obj = -13.439066, rho = -0.494979
+nSV = 30, nBSV = 21
+Total nSV = 30
+*
+optimization finished, #iter = 40
+nu = 0.031235
+obj = -14.391100, rho = -0.519949
+nSV = 30, nBSV = 22
+*
+optimization finished, #iter = 69
+nu = 0.029336
+obj = -29.377307, rho = -1.542445
+nSV = 54, nBSV = 41
+Total nSV = 54
+*
+optimization finished, #iter = 74
+nu = 0.029842
+obj = -30.078912, rho = -1.605086
+nSV = 57, nBSV = 43
+Total nSV = 57
+*
+optimization finished, #iter = 85
+nu = 0.030354
+obj = -30.248566, rho = -1.623275
+nSV = 58, nBSV = 44
+Total nSV = 58
+*
+optimization finished, #iter = 83
+nu = 0.030435
+obj = -30.871625, rho = -1.617366
+nSV = 57, nBSV = 44
+Total nSV = 57
+*
+optimization finished, #iter = 76
+nu = 0.026068
+obj = -25.615748, rho = -1.535845
+nSV = 51, nBSV = 36
+Total nSV = 51
+*
+optimization finished, #iter = 59
+nu = 0.025509
+obj = -32.117333, rho = -1.658192
+nSV = 59, nBSV = 47
+*
+optimization finished, #iter = 87
+nu = 0.048925
+obj = -54.369681, rho = -2.678974
+nSV = 86, nBSV = 74
+Total nSV = 86
+*
+optimization finished, #iter = 69
+nu = 0.045125
+obj = -51.334988, rho = -2.416720
+nSV = 79, nBSV = 69
+Total nSV = 79
+*
+optimization finished, #iter = 85
+nu = 0.044989
+obj = -50.809610, rho = -2.438089
+nSV = 81, nBSV = 68
+Total nSV = 81
+*
+optimization finished, #iter = 118
+nu = 0.045656
+obj = -49.181688, rho = -2.528727
+nSV = 80, nBSV = 66
+Total nSV = 80
+*
+optimization finished, #iter = 54
+nu = 0.047359
+obj = -52.614201, rho = -2.666601
+nSV = 82, nBSV = 73
+Total nSV = 82
+*
+optimization finished, #iter = 100
+nu = 0.042644
+obj = -58.988493, rho = -2.810114
+nSV = 91, nBSV = 81
+*
+optimization finished, #iter = 106
+nu = 0.237845
+obj = -103.515809, rho = -0.156329
+nSV = 134, nBSV = 127
+Total nSV = 134
+*
+optimization finished, #iter = 129
+nu = 0.259827
+obj = -116.407966, rho = -0.179372
+nSV = 149, nBSV = 140
+Total nSV = 149
+*
+optimization finished, #iter = 115
+nu = 0.258349
+obj = -113.351660, rho = -0.095782
+nSV = 146, nBSV = 138
+Total nSV = 146
+*
+optimization finished, #iter = 109
+nu = 0.262516
+obj = -116.508302, rho = -0.293416
+nSV = 149, nBSV = 142
+Total nSV = 149
+*
+optimization finished, #iter = 127
+nu = 0.265632
+obj = -118.262529, rho = -0.103300
+nSV = 149, nBSV = 140
+Total nSV = 149
+*
+optimization finished, #iter = 127
+nu = 0.243107
+obj = -135.101479, rho = -0.258926
+nSV = 172, nBSV = 164
+Total nSV = 327
+Testing...
+
+Classification error on test set : 0.130965643821
+****************************************
+Processing time : 6.0255 minutes
+
+Dataset : HG_0308
+Model : SVM
+Best hyperparameters : Kernel = rbf, C = 1, gamma = 5.0,coef0 = 0
+Ground truth : 
+# data with label 0 :  1308702
+# data with label 1 :        0
+# data with label 2 :        0
+# data with label 3 :        0
+# data with label 4 :        0
+Prediction : 
+# data with label 0 :  1137307
+# data with label 1 :        0
+# data with label 2 :    96246
+# data with label 3 :    35387
+# data with label 4 :    39762
+Precision =        0.0   0.0   0.0   0.0
+Recall =           nan   nan   nan   nan
+Dice =             0.0   0.0   0.0   0.0
+Jaccard =          0.0   0.0   0.0   0.0
+**************************
+

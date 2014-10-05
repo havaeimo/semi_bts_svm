@@ -1,0 +1,37 @@
+Datasets should be placed in the mlpython dataset repository. Datasets can be placed in sub-directories, model scripts can take the directory tree
+and the main dataset name as arguments. (For example, for me, the brains were in the brains_data directory, and I used HG_000X as the dataset name).
+Read below for more details.
+
+#########################
+
+model_[MODEL_NAME].py files are the scripts executed to get output predictions and measures (metrics) files.
+
+Usage: python model_[MODEL_NAME].py mlpython_dataset_directory dataset_name output_folder [train_filename test_filename [background_filename]]
+    - mlpython_dataset_directory is used if there is a sub-directory used in the ml_datasets repository. If there is no sub-directory, use ".".
+    - dataset_name is the name of the folder containing the dataset files. 
+        Files will be loaded in "ML_DATASET_REPO/mlpython_dataset_directory/dataset_name/FILENAME.txt"
+    - output_folder is where the output files will go (predictions for all points + measures file)
+    - train/test filenames are mandatory on the first use of the dataset. The script will then create trainset/validset/testset txt files and will always use them
+        afterwards, even if train/test filenames are given.
+    - background_filename should be given on the first use of the dataset if there is a file indicating which datapoints should be ignored (optional).
+
+    All executions of the same model in the same output folder will append the measures to one measures.txt file, so it can be
+    later used to compare the models/datasets measures
+
+#########################
+
+01_get_ranking_and_mean_measures.py is used to get information when many datasets can be compared (ex : brains datasets)
+
+Usage: python 01_get_ranking_and_mean_measures.py directory [model_names]
+    - directory should be a directory name where all the models results folders can be found
+    - model_names is optional, should be a list of all the models names from which to fetch the measures
+    
+#########################
+
+02_get_overall_ranking.py is used to get the final ranking of all models over all datasets. 
+    It uses a result file (ranking_02_summarized_results.txt) created by the 01_get_ranking_and_mean_measures.py file.
+
+Usage : python 02_get_overall_ranking.py directory
+    - directory is where the results file should be found, and where the overall results file will be created.
+    
+#########################

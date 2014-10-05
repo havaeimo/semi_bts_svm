@@ -1,0 +1,124 @@
+- Using libSVM, we do pretraining using rbf and sigmoid kernels.
+    We built an hyperparameter grid using the following parameters:
+        Cs = [100,500,1000,1500,2000,2500,3000,5000,7000,10000]
+        gammas = [0.00097,0.001,0.002,0.003,0.0035,0.004,0.0045]
+        coef0s = [0,0.001,0.01,0.1,1]
+    (The rbf kernel uses only C and gamma values, and the sigmoid kernel uses all values)
+
+    Here is the definition for each parameter of the svm, as a reference:
+        -t kernel_type : set type of kernel function (default 2)
+            0 -- linear: u'*v
+            1 -- polynomial: (gamma*u'*v + coef0)^degree
+            2 -- radial basis function: exp(-gamma*|u-v|^2)
+            3 -- sigmoid: tanh(gamma*u'*v + coef0)
+        -d degree : set degree in kernel function (default 3)
+        -g gamma : set gamma in kernel function (default 1/num_features)
+        -r coef0 : set coef0 in kernel function (default 0)
+        -c cost : set the parameter C of C-SVC, epsilon-SVR, and nu-SVR (default 1)
+    ***The libSVM implementation takes 10-30 minutes to process a brain***
+
+- We tried using sckit-learn svm to compare with libSVM, using rbf and sigmoid kernels, and the following hyperparameters:
+    Cs = [100,1000,5000,10000]
+    gammas = [0.003,0.0035,0.004]
+    coef0s = [0,0.001,0.01,0.1,1]
+    
+    We use less hyperparameters than libSVM because the computing time was much longer and unpredictable (between 15 and 200 minutes...).
+
+
+- We used scikit-learn knn to get our own knn results, using K=5.
+    ***The knn takes 1-5 minutes to process a brain***
+
+- We also tried using a decision tree (scikit-learn), with the following hyperparameters:
+    criterions = ['gini','entropy']
+    max_depths = [1,2,3]
+    min_samples_splits = [1,2,3]
+    min_samples_leaves = [1,2,3]
+    max_features_list = [1,2,3]
+    random_states = [None]
+
+    Here is the definition for each parameter of the decision tree as a reference:
+        DecisionTreeClassifier
+        (
+            criterion='gini',       # [gini | entropy] 
+                                    #       The function to measure the quality of a split. Gini impurity or “entropy” for the information gain.
+            max_depth=None,         # [integer | None]
+                                    #       The maximum depth of the tree. 
+                                    #       If None, then nodes are expanded until all leaves are pure 
+                                    #       or until all leaves contain less than min_samples_split samples.
+            min_samples_split=2,    # [integer]
+                                    #       The minimum number of samples required to split an internal node.
+            min_samples_leaf=1,     # [integer]
+                                    #       The minimum number of samples required to be at a leaf node.
+            max_features=None,      # [integer | float | string | None] 
+                                    #       If int, then consider max_features features at each split.
+                                    #       If float, then max_features is a percentage and int(max_features * n_features) features are considered at each split.
+                                    #       If “auto”, then max_features=sqrt(n_features).
+                                    #       If “sqrt”, then max_features=sqrt(n_features).
+                                    #       If “log2”, then max_features=log2(n_features).
+                                    #       If None, then max_features=n_features.
+            random_state=None       # [integer | RandomState | None] 
+                                    #       If int, random_state is the seed used by the random number generator; 
+                                    #       If RandomState instance, random_state is the random number generator; 
+                                    #       If None, the random number generator is the RandomState instance used by np.random.
+        )
+    ***The decision tree takes about 15 minutes to process a brain***
+    
+    
+- sklearn LDA    
+
+
+
+
+- Given a particular brain, we obtain a matrix of 4x4 measures for each method.
+
+- The file mean_results.txt contains the mean over all the brains for the 16 measures, for all methods.
+
+- The file ranking_01_detailed_results.txt contains a ranking for all measures / all methods / all brains.
+    For example, for the brain HG_0001, if we have two methods, each measure will have a value of 1 or 2 
+    (1 being the best method for this measure, 2 being the worst).
+
+- The file ranking_02_summarized_results.txt contains a global ranking for each brain / for all methods. 
+    This global ranking is done by computing the mean ranking for each method using the file ranking_01_detailed_results.txt, 
+    and then ranking using those values.
+    
+    For example, from the following rankings:
+        measures_libsvm.txt:
+        [[ 1.  1.  2.  3.]
+         [ 3.  2.  2.  2.]
+         [ 3.  2.  2.  2.]
+         [ 3.  2.  2.  2.]]
+        measures_sklearn_decisiontree.txt:
+        [[ 3.  2.  3.  2.]
+         [ 1.  3.  3.  3.]
+         [ 1.  3.  3.  3.]
+         [ 1.  3.  3.  3.]]
+        measures_knn.txt:
+        [[ 2.  3.  1.  1.]
+         [ 2.  1.  1.  1.]
+         [ 2.  1.  1.  1.]
+         [ 2.  1.  1.  1.]]
+         
+    We compute mean rankings:
+        measures_libsvm.txt: 2.125
+        measures_sklearn_decisiontree.txt: 2.5
+        measures_knn.txt: 1.375
+        
+    And rank using those values:
+        measures_libsvm.txt: 2
+        measures_sklearn_decisiontree.txt: 3
+        measures_knn.txt: 1
+        
+- The file ranking_03_mean_results.txt contains the mean ranking over all brains for each method.
+
+- The file mean_measures.txt contains the mean of the measures for each method over all the brains.
+
+- The files measures_[METHOD_NAME].txt contains the measures for all brains for a given method.
+
+- The folders [METHOD_NAME]_results contains the prediction for each brain, for all data points
+
+
+
+
+
+
+
