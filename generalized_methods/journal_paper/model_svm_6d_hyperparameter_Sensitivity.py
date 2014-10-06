@@ -3,6 +3,8 @@ import os
 import sys
 import fcntl
 import copy
+import pdb
+sys.path.append('/home/local/USHERBROOKE/havm2701/git.repos/semi_bts_svm/semi_bts_svm/generalized_methods/')
 from string import Template
 import mlpython.datasets.store as dataset_store
 from mlpython.learners.third_party.libsvm.classification import SVMClassifier
@@ -11,7 +13,9 @@ import time
 import data_utils
 #import ipdb
 
-sys.argv.pop(0);	# Remove first argument
+# make a dictionary of the selected brains with their best c and gamma parameters. 
+brain_list = {'HG_0002': [1,50], 'HG_0001': [1,0.01], 'HG_0003': [1,1], 'HG_0010': [1,50], 'HG_0008': [1,5], 'HG_0012': [50,50], 'HG_0011': [1,5], 'HG_0022': [1,5], 'HG_0025': [1,50], 'HG_0027': [1,10], 'LG_0008': [1,200], 'LG_0001': [1,50], 'LG_0006': [1,1], 'LG_0015': [100,200], 'HG_0014': [1,5]}
+sys.argv.pop(0); # Remove first argument
 
 # Check if every option(s) from parent's script are here.
 
@@ -127,7 +131,7 @@ best_val_error = np.inf
 output_probabilities = True # Or False!
 kernels = ['rbf','sigmoid']
 degrees = [1,2,3,4,5,7,10,15]
-gammas = [0.01,0.1,1,5,10,50,100,200,500,1000]
+gammas = [0.01,0.1,1,5,10,50,100,150,200,500,1000]
 coef0s = [-10,-1,-0.1,-0.01,0,0.001,0.01,0.1,1,2,5,10,20]
 Cs = [1,10,50,100,500,1000,1500,2000,2500,3000,5000]
 '''
