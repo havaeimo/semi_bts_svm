@@ -9,7 +9,7 @@ from mlpython.learners.third_party.libsvm.classification import SVMClassifier
 import compute_statistics
 import time
 import data_utils
-import ipdb
+#import ipdb
 
 sys.argv.pop(0);	# Remove first argument
 
@@ -129,7 +129,7 @@ kernels = ['rbf','sigmoid']
 degrees = [1,2,3,4,5,7,10,15]
 gammas = [0.01,0.1,1,5,10,50,100,200,500,1000]
 coef0s = [-10,-1,-0.1,-0.01,0,0.001,0.01,0.1,1,2,5,10,20]
-Cs = [1,10,50,100,500,1000,1500,2000,2500,3000,5000]
+Cs = [1,5,10,25,50,75,100,200,500,1000,1500]
 '''
 kernels = ['rbf']
 degrees = [1]
@@ -142,20 +142,21 @@ Cs = [1]
 hyperparams_grid = []
 for C in Cs:
     # Linear kernel parameters
-    hyperparams_grid.append(['linear', 3, 1, 0, C])
+    #hyperparams_grid.append(['linear', 3, 1, 0, C])
 
     # Polynomial kernel parameters
-    """
-    for gamma in gammas:
+    
+    """for gamma in gammas:
         for coef0 in coef0s:
             for degree in degrees:
                 hyperparams_grid.append(['polynomial', degree, gamma, coef0, C])
     """
     # Rbf kernel parameters
-    """
+    
     for gamma in gammas:
-        hyperparams_grid.append(['rbf', 3, gamma, 0, C])
-    """    
+        for C in Cs:
+            hyperparams_grid.append(['rbf', 3, gamma, 0, C])
+        
     #Sigmoid kernel parameters
     """
     for gamma in gammas:
