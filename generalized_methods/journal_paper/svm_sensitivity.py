@@ -90,5 +90,4 @@ for brain in brain_names:
           with open(results_path + results_file_c,'a') as c:
               c.write(brain_str)
               c.write(resultc1)
-              c.write(resultc2) 
-
+              c.write(resultc2)
