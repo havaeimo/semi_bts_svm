@@ -3,7 +3,7 @@ import os
 import sys
 import fcntl
 import copy
-#import pdb
+import pdb
 sys.path.append('/home/local/USHERBROOKE/havm2701/git.repos/semi_bts_svm/semi_bts_svm/generalized_methods/')
 from string import Template
 import mlpython.datasets.store as dataset_store
@@ -38,16 +38,16 @@ results_file_c = 'libsvm_measures_C.txt'
 results_file_g = 'libsvm_measures_gamma.txt'
 
 for brain in brain_names:
-    resultg1, resultg2 = '' ,''
     datasets = load_data(dataset_directory , brain)
+    resultg1, resultg2 = '' ,''
     C = brain_list[brain][0]
     brain_str = brain + '\t' + 'C=' + str(C) + ' \n'
     
     for gamma in gammas:
         paramsg = ['rbf', 3, gamma, 0, C]
-        errorg , processed_timeg = svm_model(dataset_directory, brain, paramsg, datasets)
+        dice_g , processed_timeg = svm_model(dataset_directory, brain, paramsg, datasets)
         
-        resultg1 += "%.4f" % errorg + '\t'
+        resultg1 += "%.4f" % dice_g + '\t'
         resultg2 += "%.4f" % processed_timeg + '\t'
     
     resultg1 += '\n'
@@ -60,21 +60,24 @@ for brain in brain_names:
             g.write(resultg2)
     else:
           with open(results_path + results_file_g,'a') as g:
+              g.write(brain_str)
               g.write(resultg1)
               g.write(resultg2) 
 
-
+for brain in brain_names:
+    datasets = load_data(dataset_directory , brain)
     resultc1, resultc2 = '' ,''           
     gamma = brain_list[brain][1]
     brain_str = brain + '\t' + 'gamma=' + str(gamma) + ' \n'
     
     for C in Cs:
         paramsc = ['rbf', 3, gamma, 0, C]
-        errorc , processed_timec = svm_model(dataset_directory, brain, paramsc, datasets)
-        
-        resultc1 += "%.7f" % errorc + '\t'
+        dice_C , processed_timec = svm_model(dataset_directory, brain, paramsc, datasets)
+        #if brain == 'LG_0008':
+        #	pdb.set_trace()
+        print dice_c
+        resultc1 += "%.7f" % dice_c + '\t'
         resultc2 += "%.4f" % processed_timec + '\t'
-    
     resultc1 += '\n'
     resultc2 += '\n'
      
@@ -85,6 +88,7 @@ for brain in brain_names:
             c.write(resultc2)
     else:
           with open(results_path + results_file_c,'a') as c:
+              c.write(brain_str)
               c.write(resultc1)
               c.write(resultc2) 
 

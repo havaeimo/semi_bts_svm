@@ -140,22 +140,22 @@ Cs = [1]
 
 
 hyperparams_grid = []
-for C in Cs:
-    # Linear kernel parameters
-    #hyperparams_grid.append(['linear', 3, 1, 0, C])
 
-    # Polynomial kernel parameters
-    
-    """for gamma in gammas:
-        for coef0 in coef0s:
-            for degree in degrees:
-                hyperparams_grid.append(['polynomial', degree, gamma, coef0, C])
-    """
-    # Rbf kernel parameters
-    
-    for gamma in gammas:
-        for C in Cs:
-            hyperparams_grid.append(['rbf', 3, gamma, 0, C])
+# Linear kernel parameters
+#hyperparams_grid.append(['linear', 3, 1, 0, C])
+
+# Polynomial kernel parameters
+
+"""for gamma in gammas:
+    for coef0 in coef0s:
+        for degree in degrees:
+            hyperparams_grid.append(['polynomial', degree, gamma, coef0, C])
+"""
+# Rbf kernel parameters
+
+for gamma in gammas:
+    for C in Cs:
+        hyperparams_grid.append(['rbf', 3, gamma, 0, C])
         
     #Sigmoid kernel parameters
     """
