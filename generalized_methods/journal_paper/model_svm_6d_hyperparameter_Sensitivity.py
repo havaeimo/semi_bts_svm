@@ -100,5 +100,6 @@ def svm_model(dataset_directory, dataset_name, params, datasets):
     auto_lbl = np.append(auto_lbl, [0]*len_bg)
     
     (dice, jaccard, precision, recall) = compute_statistics.compute_eval_multilabel_metrics(auto_lbl, lbl)
+    dice = dice[~np.isnan(dice)]
     return [dice.mean(), processing_time]
     
