@@ -36,7 +36,7 @@ Cs = [1,5,10,25,50,75,100,150,200,250,300,400,500,750,1000,1250,1500]
 brain_names = brain_list.keys()
 results_file_c = 'libsvm_measures_C.txt'
 results_file_g = 'libsvm_measures_gamma.txt'
-
+'''
 for brain in brain_names:
     datasets = load_data(dataset_directory , brain)
     resultg1, resultg2 = '' ,''
@@ -63,7 +63,7 @@ for brain in brain_names:
               g.write(brain_str)
               g.write(resultg1)
               g.write(resultg2) 
-
+'''
 for brain in brain_names:
     datasets = load_data(dataset_directory , brain)
     resultc1, resultc2 = '' ,''           
@@ -72,10 +72,10 @@ for brain in brain_names:
     
     for C in Cs:
         paramsc = ['rbf', 3, gamma, 0, C]
-        dice_C , processed_timec = svm_model(dataset_directory, brain, paramsc, datasets)
+        dice_c , processed_timec = svm_model(dataset_directory, brain, paramsc, datasets)
         #if brain == 'LG_0008':
         #	pdb.set_trace()
-        print dice_c
+
         resultc1 += "%.7f" % dice_c + '\t'
         resultc2 += "%.4f" % processed_timec + '\t'
     resultc1 += '\n'
