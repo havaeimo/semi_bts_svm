@@ -9,8 +9,31 @@ from mlpython.learners.third_party.libsvm.classification import SVMClassifier
 import compute_statistics
 import time
 import pdb
+def subsample(signal,factor):
+    l_sig = len(signal)
+    ind = np.arange(0,l_sig,factor)
+    new_sig=[]
+    for j in ind:
+       new_sig.append(signal[int(j)])
+    return new_sig
 
-
+def data_reduction(full_train,factor):
+    
+    full_train_0 = [h for h in full_train if h[1]=='0']
+    full_train_3 = [n for n in full_train if n[1]=='3']
+    full_train_2 = [e for e in full_train if e[1]=='2']
+    full_train_4 = [en for en in full_train if en[1]=='4']
+    subsampled_training = []
+    
+    subsampled_training.extend(subsample(full_train_0,factor))
+    subsampled_training.extend(subsample(full_train_2,factor))
+    subsampled_training.extend(subsample(full_train_3,factor))
+    subsampled_training.extend(subsample(full_train_4,factor))
+    pdb.set_trace()
+    return 0
+    
+     
+    
 
 
 # Loading functions are in this script for now, should be moved to mlpython/datasets later
@@ -55,7 +78,6 @@ def create_files(dir_path, train_filename, test_filename, background_filename, i
     random.seed('1234')
     random.shuffle(all_data_interaction)
     random.shuffle(test_data)
-
     # Split data into train,valid,test (70% train, 20% valid, 10% test)
     len_train = int(0.78 * length_interaction)
     len_valid = length_interaction - len_train
@@ -170,7 +192,6 @@ def load_data(dir_path, input_size=6, targets=set(['0','1','2','3','4']), train_
             
         train_data, valid_data, finaltrain_data, test_data = [mlio.load_from_file(filename=f,load_line=load_line) for f in [train_file, valid_file, finaltrain_file, test_file]]
             
-
     # Get metadata
     with open(os.path.join(dir_path,'metadata.txt'),'r') as f:
         train_meta,valid_meta,finaltrain_meta,test_meta = [{'input_size':input_size,'length':int(f.readline()[:-1]),'targets':targets} for i in range(4)]

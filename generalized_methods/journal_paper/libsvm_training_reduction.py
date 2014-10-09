@@ -66,7 +66,6 @@ start_time = time.clock()
 
 all_data = data_utils.load_data(dir_path=dataset_dir, input_size=input_size, train_filename=train_filename, test_filename=test_filename, background_filename=background_filename,load_to_memory=False)
 
-#def data_reduction(all_data , factor):
     
 
 #all_data = data_reduction(all_data , factor = 5)
@@ -75,7 +74,7 @@ train_data, train_metadata = all_data['train']
 valid_data, valid_metadata = all_data['valid']
 finaltrain_data, finaltrain_metadata = all_data['finaltrain']
 test_data, test_metadata = all_data['test']
-
+final_data = data_utils.data_reduction(finaltrain_data , factor = 5)
 
 def reduce_dimensionality(mlproblem_data, mlproblem_metadata):
     mlproblem_metadata['input_size'] = 3  # we need to change the input size from 6 to 3. 
