@@ -64,17 +64,18 @@ if dataset_dir is None:
 # Load data
 start_time = time.clock()
 
-all_data = data_utils.load_data(dir_path=dataset_dir, input_size=input_size, train_filename=train_filename, test_filename=test_filename, background_filename=background_filename,load_to_memory=False)
+all_data = data_utils.load_data(dir_path=dataset_dir, input_size=input_size, train_filename=train_filename, test_filename=test_filename, background_filename=background_filename,load_to_memory=True)
+pdb.set_trace()
+test_data, test_metadata = all_data['test']
+fulltrain_backup = all_data['finaltrain']    
 
-    
-
-#all_data = data_reduction(all_data , factor = 5)
-
+all_data = data_utils.data_reduction(fulltrain_backup , factor = 5)
+pdb.set_trace()
 train_data, train_metadata = all_data['train']
 valid_data, valid_metadata = all_data['valid']
 finaltrain_data, finaltrain_metadata = all_data['finaltrain']
-test_data, test_metadata = all_data['test']
-final_data = data_utils.data_reduction(finaltrain_data , factor = 5)
+#test_data, test_metadata = all_data['test']
+#final_data = data_utils.data_reduction(finaltrain_data , factor = 5)
 
 def reduce_dimensionality(mlproblem_data, mlproblem_metadata):
     mlproblem_metadata['input_size'] = 3  # we need to change the input size from 6 to 3. 
@@ -104,7 +105,6 @@ for d,i in enumerate(testset):
     if d>10:
         break
 
-ipdb.set_trace() 
 '''
 def compute_error_mean_and_sterror(costs):
     classif_errors = np.hstack(costs)

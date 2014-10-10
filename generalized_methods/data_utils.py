@@ -9,6 +9,7 @@ from mlpython.learners.third_party.libsvm.classification import SVMClassifier
 import compute_statistics
 import time
 import pdb
+import random
 def subsample(signal,factor):
     l_sig = len(signal)
     ind = np.arange(0,l_sig,factor)
@@ -17,8 +18,9 @@ def subsample(signal,factor):
        new_sig.append(signal[int(j)])
     return new_sig
 
-def data_reduction(full_train,factor):
-    
+def data_reduction(fulltrain,factor):
+    pdb.set_trace()
+    full_train, meta_data = fulltrain     
     full_train_0 = [h for h in full_train if h[1]=='0']
     full_train_3 = [n for n in full_train if n[1]=='3']
     full_train_2 = [e for e in full_train if e[1]=='2']
@@ -29,8 +31,31 @@ def data_reduction(full_train,factor):
     subsampled_training.extend(subsample(full_train_2,factor))
     subsampled_training.extend(subsample(full_train_3,factor))
     subsampled_training.extend(subsample(full_train_4,factor))
-    pdb.set_trace()
-    return 0
+    #pdb.set_trace()
+    print "Shuffling data..."
+    length_interaction = len(subsampled_training)
+    random.seed('1234')
+    random.shuffle(subsampled_training)
+  
+    # Split data into train,valid,test (70% train, 20% valid, 10% test)
+
+    len_train = int(0.78 * length_interaction)
+    len_valid = length_interaction - len_train
+    len_finaltrain = length_interaction
+
+    train_data = subsampled_training[:len_train]
+    valid_data = subsampled_training[len_train:]
+    finaltrain_data = subsampled_training
+
+    lengths = [len_train, len_valid, len_finaltrain]
+    meta_data_train = meta_data.copy()
+    meta_data_train['length']=len_train
+    meta_data_valid = meta_data.copy()
+    meta_data_valid['length']=len_valid
+    meta_data_finaltrain = meta_data.copy()
+    meta_data_finaltrain['length']=len_finaltrain
+    
+    return {'train':(train_data,meta_data_train),'valid':(valid_data,meta_data_valid),'finaltrain':(finaltrain_data,meta_data_finaltrain)}
     
      
     
@@ -79,6 +104,7 @@ def create_files(dir_path, train_filename, test_filename, background_filename, i
     random.shuffle(all_data_interaction)
     random.shuffle(test_data)
     # Split data into train,valid,test (70% train, 20% valid, 10% test)
+    
     len_train = int(0.78 * length_interaction)
     len_valid = length_interaction - len_train
     len_finaltrain = length_interaction
@@ -172,7 +198,6 @@ def load_data(dir_path, input_size=6, targets=set(['0','1','2','3','4']), train_
 
     # Look if the train/valid/test files already exist, if not, load the data and create the files
     train_file, valid_file, finaltrain_file, test_file = [os.path.join(dir_path, ds + '.txt') for ds in ['trainset','validset','finaltrainset','testset']]
-    
     if os.path.exists(train_file):
         print "Train/valid/test files exist, loading data..."
     else:
@@ -186,6 +211,7 @@ def load_data(dir_path, input_size=6, targets=set(['0','1','2','3','4']), train_
     # train/valid/test files should exist by now
     if load_to_memory:
         train_data, valid_data, finaltrain_data, test_data = [mlio.libsvm_load(filename=f, input_size=input_size)[0] for f in [train_file, valid_file, finaltrain_file, test_file]]
+        pdb.set_trace()
     else:
         def load_line(line):
             return mlio.libsvm_load_line(line,input_size=input_size)
