@@ -227,103 +227,12 @@ for label, id in testset.class_to_id.iteritems():
     
 lbl = np.array([int(data[1]) for data in test_data]) # Ground truth
 auto_lbl = np.array([int(id_to_class[output[0]]) for output in outputs]) # Predicted labels
-"""
-WARNING!
-If using probability distributions, we need to remap the ids to the right class (for all outputs)
-"""
 
-
-# Write outputs to disk if result file does not already exist
-results_path = output_folder + 'libsvm_results/'
-if not os.path.exists(results_path):
-    os.makedirs(results_path)
-if use_weights:
-    output_file = results_path + dataset_name + '_weightedlabels_output_txt'
-else:
-    output_file = results_path + dataset_name + '_libsvm_output.txt'
-if not os.path.exists(output_file):
-    with open(output_file,'w') as f:
-        for output, data in zip(outputs, test_data):
-            line = ""
-            for l in output:
-                line += str(l) + ' '
-
-            line +=  str(data[0][3]) + ' '
-            line +=  str(data[0][4]) + ' '
-            line +=  str(data[0][5]) + '\n'
-            f.write(line)
-
-# Compute processing time
-end_time = time.clock()
-print "Processing time : " + str(float(end_time - start_time) / 60) + ' minutes'
-print
-
-def string_debug(labels):
-    result = ''
-    for i in range(5):
-        result += "# data with label " + str(i) + " : " + str( (labels == i).sum() ).rjust(8) + '\n'
-    return result
-        
-def hyper_to_string(hyperparams):
-    result = ''
-    result += 'Kernel = ' + str(hyperparams[0]) + ', '
-    result += 'C = ' + str(hyperparams[4]) + ', '
-    result += 'gamma = ' + str(hyperparams[2]) + ','
-    result += 'coef0 = ' + str(hyperparams[3])
-    return result
-        
-def measure_to_string(measure):
-    result = ''
-    for value in measure:
-        result += str(value)[:5].rjust(6)
-    return result
-
-
-result = ''
-
-# Fill prediction / ground truth with zeros for all background points
 len_bg = testset.metadata['len_bg']
 lbl = np.append(lbl, [0]*len_bg)
 auto_lbl = np.append(auto_lbl, [0]*len_bg)
-
 (dice, jaccard, precision, recall) = compute_statistics.compute_eval_multilabel_metrics(auto_lbl, lbl)
-
-lbl_result = string_debug(lbl)
-auto_lbl_result = string_debug(auto_lbl)
-
-results_file = 'libsvm_measures.txt'
-if not os.path.exists(results_path + results_file):
-    result += 'Results = [Edema, non-enhanced tumor, enhanced tumor, complete (abnormality vs healthy)]\n'
-    
-result += 'Dataset : ' + dataset_name + '\n'
-result += 'Model : SVM\n'
-
-result += 'Best hyperparameters : ' + hyper_to_string(best_hyperparams) + '\n'
-
-result += 'Ground truth : \n' + lbl_result
-result += 'Prediction : \n' + auto_lbl_result
-
-result += 'Precision = '.ljust(15) + ' '
-result += measure_to_string(precision) + '\n'
-result += 'Recall = '.ljust(15) + ' '
-result += measure_to_string(recall) + '\n'
-result += 'Dice = '.ljust(15) + ' '
-result += measure_to_string(dice) + '\n'
-result += 'Jaccard = '.ljust(15) + ' '
-result += measure_to_string(jaccard) + '\n'
-
-result += '**************************\n'
-
-print result
-
-
-if not os.path.exists(results_path + results_file):
-    with open(results_path + results_file,'w') as f:
-        f.write(result)
-else:
-    with open(results_path + results_file,'a') as f:
-        f.write(result)
-        
-
+dice = dice[~np.isnan(dice)]
+return [dice.mean(), processing_time]
 
 
