@@ -19,7 +19,6 @@ def subsample(signal,factor):
     return new_sig
 
 def data_reduction(fulltrain,factor):
-    pdb.set_trace()
     full_train, meta_data = fulltrain     
     full_train_0 = [h for h in full_train if h[1]=='0']
     full_train_3 = [n for n in full_train if n[1]=='3']
@@ -31,7 +30,6 @@ def data_reduction(fulltrain,factor):
     subsampled_training.extend(subsample(full_train_2,factor))
     subsampled_training.extend(subsample(full_train_3,factor))
     subsampled_training.extend(subsample(full_train_4,factor))
-    #pdb.set_trace()
     print "Shuffling data..."
     length_interaction = len(subsampled_training)
     random.seed('1234')
@@ -211,7 +209,6 @@ def load_data(dir_path, input_size=6, targets=set(['0','1','2','3','4']), train_
     # train/valid/test files should exist by now
     if load_to_memory:
         train_data, valid_data, finaltrain_data, test_data = [mlio.libsvm_load(filename=f, input_size=input_size)[0] for f in [train_file, valid_file, finaltrain_file, test_file]]
-        pdb.set_trace()
     else:
         def load_line(line):
             return mlio.libsvm_load_line(line,input_size=input_size)
