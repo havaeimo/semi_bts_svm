@@ -71,11 +71,13 @@ yerr_upper = ymat.max(axis=0) - ymean
 yerr_lower = ymean - ymat.min(axis=0)
 
 # example variable error bar values
-pdb.set_trace()
 
 # First illustrate basic pyplot interface, using defaults where possible.
 plt.figure()
-plt.errorbar(x, ymean, yerr=[yerr_lower, yerr_upper],fmt='o')
+plt.errorbar(x, ymean, yerr=[yerr_lower, yerr_upper],fmt='s', mfc='black', ms=5, ecolor='black')
+# marker='s'  use this argument to connect the markers to gether while mfc produces scatter plot of errorbars. 
+# mfc is used to determince the color of marker
+# ecolor is used for the color of the error bars
 
 plt.axis([0,17,50,250])
 plt.xticks(np.arange(17),gammas)
