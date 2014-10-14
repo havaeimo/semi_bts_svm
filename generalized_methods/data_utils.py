@@ -10,12 +10,17 @@ import compute_statistics
 import time
 import pdb
 import random
-def subsample(signal,factor):
-    l_sig = len(signal)
-    ind = np.arange(0,l_sig,factor)
-    new_sig=[]
-    for j in ind:
-       new_sig.append(signal[int(j)])
+def subsample(signal,decimation):
+    random.seed
+    random.shuffle(signal)
+    if decimation == 'factor':
+        l_sig = len(signal)
+        ind = np.arange(0,l_sig,decimation)
+        new_sig=[]
+        for j in ind:
+           new_sig.append(signal[int(j)])
+    elif decimation == 'number':
+        new_sig = signal[:decimation]
     return new_sig
 
 def data_reduction(fulltrain,factor):
