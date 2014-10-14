@@ -29,7 +29,8 @@ if not os.path.exists(results_path):
     os.makedirs(results_path)
 
 #Factors = [1,1.5,2,2.5,3,3.5,4,4.5,5,6,7,8]
-Factors = [9,10,11,12,13,14,15,16,17,18,19,20]
+#Factors = [9,10,11,12,13,14,15,16,17,18,19,20]
+Factors = [2000,1500,1000,900,800,700,600,500,400,300,200,100,75,50,40,30,20,10]
 # measure the sensitivity of gamma for the selected brains and save the text file
 
 brain_names = brain_list.keys()
@@ -41,21 +42,26 @@ for brain in brain_names:
     all_data = data_utils.load_data(dataset_dir)
     test = all_data['test']
     fulltrain_backup = all_data['finaltrain']    
-    resultc1, resultc2, resultc3 = '' ,'',''           
+    resultc1, resultc2 = '' ,''           
     brain_str = brain + ' \n'
     
     for factor in Factors:
-        all_data = data_utils.data_reduction(fulltrain_backup , factor)
-        all_data['test'] = test
-        print len(fulltrain_backup[0])
-        print len(all_data['finaltrain'][0])
-        train = [int(t[1]) for t in all_data['train'][0]] 
-        valid = [int(v[1]) for v in all_data['valid'][0]]
-        train = np.asarray(train)
-        valid = np.asarray(valid)
-        datasets = create_datasets(all_data)
-        dice_c , processed_timec = svm_model(datasets)
-
+        resultc3 = ''
+        dice_t = np.zeros((10))
+        processed_timet = np.zeros((10))
+        for nb in range(10):
+            all_data = data_utils.data_reduction(fulltrain_backup , factor)
+            all_data['test'] = test
+            print len(fulltrain_backup[0])
+            print len(all_data['finaltrain'][0])
+            train = [int(t[1]) for t in all_data['train'][0]] 
+            valid = [int(v[1]) for v in all_data['valid'][0]]
+            train = np.asarray(train)
+            valid = np.asarray(valid)
+            datasets = create_datasets(all_data)
+            dice_t[i] , processed_timet[i] = svm_model(datasets)
+        dice_c = dice_t.mean()
+        processed_timec = processed_timet.mean()
         resultc1 += "%.7f" % dice_c + '\t'
         resultc2 += "%.4f" % processed_timec + '\t'
         resultc3 += 'factor = ' + str(factor) + '\n'
