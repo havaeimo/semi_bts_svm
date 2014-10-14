@@ -28,7 +28,8 @@ results_path = output_folder + '/libsvm_results/'
 if not os.path.exists(results_path):
     os.makedirs(results_path)
 
-Factors = [1,1.5,2,2.5,3,3.5,4,4.5,5,6,7,8]
+#Factors = [1,1.5,2,2.5,3,3.5,4,4.5,5,6,7,8]
+Factors = [9,10,11,12,13,14,15,16,17,18,19,20]
 # measure the sensitivity of gamma for the selected brains and save the text file
 
 brain_names = brain_list.keys()
