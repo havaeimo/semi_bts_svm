@@ -1,4 +1,3 @@
-import pdb
 import numpy as np
 import os
 import sys
@@ -101,7 +100,6 @@ def svm_model(datasets):
             print "Error while instantiating SVMClassifier (required hyper-parameters are probably missing)"
             print inst
             sys.exit()
-        pdb.set_trace()
         svm.train(trainset)
         outputs, costs = svm.test(validset)
         
