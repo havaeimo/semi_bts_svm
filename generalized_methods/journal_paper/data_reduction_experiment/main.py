@@ -59,6 +59,7 @@ for brain in brain_names:
             finaltrain = [int(f[1]) for f in all_data['finaltrain'][0]]
             train = np.asarray(train)
             valid = np.asarray(valid)
+            finaltrain = np.asarray(finaltrain)
             datasets = create_datasets(all_data)
             dice_t[nb] , processed_timet[nb] = svm_model(datasets)
         dice_c = dice_t.mean()
@@ -67,10 +68,9 @@ for brain in brain_names:
         resultc2 += "%.4f" % processed_timec + '\t'
         resultc3 += 'factor = ' + str(factor) + '\n'
         resultc3 += 'finaltrain = ' + str(len(all_data['finaltrain'][0])) + '\n'
-
         resultc3 += 'train = ' + str(len(all_data['train'][0])) + '\t' + 'class_0 = ' + str(sum(train==0)) + '\t' +  'class_2 = ' + str(sum(train==2)) + '\t' +'class_3 = ' + str(sum(train==3)) + '\t' +'class_4 = ' + str(sum(train==4)) + '\n' 
         resultc3 += 'valid = ' + str(len(all_data['valid'][0])) + '\t' + 'class_0 = ' + str(sum(valid==0)) + '\t' +'class_2 = ' + str(sum(valid==2)) + '\t' +'class_3 = ' + str(sum(valid==3)) + '\t' +'class_4 = ' + str(sum(valid==4)) + '\n' 
-        resultc3 += 'healthy = ' +  str(sum(train==0) + sum(valid==0)) + '\t' + 'non_healthy = ' + str(sum(finaltrain==2) + sum(finaltrain==3) + sum(finaltrain==4))
+        resultc3 += 'healthy = ' +  str(sum(train==0) + sum(valid==0)) + '\t' + 'non_healthy = ' + str(sum(finaltrain==2) + sum(finaltrain==3) + sum(finaltrain==4)) + '\n'
         resultc3 += 'dice = ' "%.7f" % dice_c + '\t' + 'processed_time = ' + "%.4f" % processed_timec + '\n'
         resultc3 += '\n'
         if not os.path.exists(results_path + results_file_metadata):
