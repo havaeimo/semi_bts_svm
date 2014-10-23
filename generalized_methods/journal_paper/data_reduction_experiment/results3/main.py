@@ -1,4 +1,4 @@
-import numpy as nnano main.pp
+import numpy as np
 import os
 import sys
 import fcntl
@@ -17,8 +17,8 @@ from libsvm_training_reduction import create_datasets as create_datasets
 #import ipdb
 
 # make a dictionary of the selected brains with their best c and gamma parameters. 
-brain_list = {'HG_0002': [1,50], 'HG_0001': [1,0.01], 'HG_0003': [1,1], 'HG_0010': [1,50], 'HG_0008': [1,5], 'HG_0012': [50,50], 'HG_0011': [1,5], 'HG_0022': [1,5], 'HG_0025': [1,50], 'HG_0027': [1,10], 'LG_0008': [1,200], 'LG_0001': [1,50], 'LG_0006': [1,1], 'LG_0015': [100,200], 'HG_0014': [1,5]}
-brain_list = {'HG_0002': [1,50], 'HG_0001': [1,0.01], 'HG_0003': [1,1], 'HG_0010': [1,50], 'HG_0008': [1,5], 'HG_0012': [50,50], 'HG_0011': [1,5], 'HG_0022': [1,5], 'HG_0025': [1,50], 'HG_0027': [1,10], 'LG_0008': [1,200], 'LG_0001': [1,50], 'LG_0006': [1,1], 'LG_0015': [100,200], 'HG_0014': [1,5]}
+#brain_list = {'HG_0002': [1,50], 'HG_0001': [1,0.01], 'HG_0003': [1,1], 'HG_0010': [1,50], 'HG_0008': [1,5], 'HG_0012': [50,50], 'HG_0011': [1,5], 'HG_0022': [1,5], 'HG_0025': [1,50], 'HG_0027': [1,10], 'LG_0008': [1,200], 'LG_0001': [1,50], 'LG_0006': [1,1], 'LG_0015': [100,200], 'HG_0014': [1,5]}
+brain_list = {'LG_0008': [1,200], 'LG_0001': [1,50], 'LG_0006': [1,1], 'LG_0015': [100,200], 'HG_0014': [1,5]}
 sys.argv.pop(0); # Remove first argument
 
 # Get arguments
@@ -39,7 +39,7 @@ brain_names = brain_list.keys()
 results_file_c = 'libsvm_measures_factor.txt'
 results_file_metadata = 'libsvm_measures_factor_metadata.txt'
 
-for brain in brain_names[2:]:
+for brain in brain_names[0:2]:
     dataset_dir = os.path.join(os.environ.get('MLPYTHON_DATASET_REPO') + '/' + dataset_directory, brain)
     all_data = data_utils.load_data(dataset_dir)
     test = all_data['test']
@@ -84,8 +84,8 @@ for brain in brain_names[2:]:
                 d.write(resultc3)            
             dice_c = dice_t.mean()
             processed_timec = processed_timet.mean()
-            resultc1 += "%.7f" % dice_c + '\t'
-            resultc2 += "%.4f" % processed_timec + '\t'
+        resultc1 += "%.7f" % dice_c + '\t'
+        resultc2 += "%.4f" % processed_timec + '\t'
 
     resultc1 += '\n'
     resultc2 += '\n'
