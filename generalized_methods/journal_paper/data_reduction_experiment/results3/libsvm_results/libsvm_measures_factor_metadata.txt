@@ -2574,3 +2574,323 @@ valid = 18	class_0 = 7	class_2 = 7	class_3 = 4	class_4 = 0
 healthy = 40	non_healthy = 39
 dice = 61.3547045	processed_time = 48.9500
 
+LG_0008 
+factor = 40
+finaltrain = 79
+train = 61	class_0 = 33	class_2 = 19	class_3 = 9	class_4 = 0
+valid = 18	class_0 = 7	class_2 = 8	class_3 = 3	class_4 = 0
+healthy = 40	non_healthy = 39
+dice = 58.4579953	processed_time = 50.5600
+
+LG_0008 
+factor = 40
+finaltrain = 79
+train = 61	class_0 = 34	class_2 = 18	class_3 = 9	class_4 = 0
+valid = 18	class_0 = 6	class_2 = 9	class_3 = 3	class_4 = 0
+healthy = 40	non_healthy = 39
+dice = 62.1681320	processed_time = 44.1400
+
+LG_0008 
+factor = 40
+finaltrain = 79
+train = 61	class_0 = 32	class_2 = 21	class_3 = 8	class_4 = 0
+valid = 18	class_0 = 8	class_2 = 6	class_3 = 4	class_4 = 0
+healthy = 40	non_healthy = 39
+dice = 50.0703122	processed_time = 44.3800
+
+LG_0008 
+factor = 40
+finaltrain = 79
+train = 61	class_0 = 28	class_2 = 24	class_3 = 9	class_4 = 0
+valid = 18	class_0 = 12	class_2 = 3	class_3 = 3	class_4 = 0
+healthy = 40	non_healthy = 39
+dice = 57.4408328	processed_time = 36.6200
+
+LG_0008 
+factor = 40
+finaltrain = 79
+train = 61	class_0 = 31	class_2 = 21	class_3 = 9	class_4 = 0
+valid = 18	class_0 = 9	class_2 = 6	class_3 = 3	class_4 = 0
+healthy = 40	non_healthy = 39
+dice = 71.7176489	processed_time = 35.9800
+
+LG_0008 
+factor = 40
+finaltrain = 79
+train = 61	class_0 = 32	class_2 = 20	class_3 = 9	class_4 = 0
+valid = 18	class_0 = 8	class_2 = 7	class_3 = 3	class_4 = 0
+healthy = 40	non_healthy = 39
+dice = 65.2691776	processed_time = 50.5000
+
+LG_0008 
+factor = 40
+finaltrain = 79
+train = 61	class_0 = 31	class_2 = 23	class_3 = 7	class_4 = 0
+valid = 18	class_0 = 9	class_2 = 4	class_3 = 5	class_4 = 0
+healthy = 40	non_healthy = 39
+dice = 68.9275949	processed_time = 37.0400
+
+LG_0008 
+factor = 40
+finaltrain = 79
+train = 61	class_0 = 32	class_2 = 20	class_3 = 9	class_4 = 0
+valid = 18	class_0 = 8	class_2 = 7	class_3 = 3	class_4 = 0
+healthy = 40	non_healthy = 39
+dice = 59.0799087	processed_time = 35.6800
+
+LG_0008 
+factor = 40
+finaltrain = 79
+train = 61	class_0 = 29	class_2 = 21	class_3 = 11	class_4 = 0
+valid = 18	class_0 = 11	class_2 = 6	class_3 = 1	class_4 = 0
+healthy = 40	non_healthy = 39
+dice = 68.3174964	processed_time = 41.8800
+
+LG_0008 
+factor = 30
+finaltrain = 59
+train = 46	class_0 = 26	class_2 = 15	class_3 = 5	class_4 = 0
+valid = 13	class_0 = 4	class_2 = 5	class_3 = 4	class_4 = 0
+healthy = 30	non_healthy = 29
+dice = 54.5602628	processed_time = 52.8100
+
+LG_0008 
+factor = 30
+finaltrain = 59
+train = 46	class_0 = 23	class_2 = 16	class_3 = 7	class_4 = 0
+valid = 13	class_0 = 7	class_2 = 4	class_3 = 2	class_4 = 0
+healthy = 30	non_healthy = 29
+dice = 56.3702611	processed_time = 36.4700
+
+LG_0008 
+factor = 30
+finaltrain = 59
+train = 46	class_0 = 25	class_2 = 14	class_3 = 7	class_4 = 0
+valid = 13	class_0 = 5	class_2 = 6	class_3 = 2	class_4 = 0
+healthy = 30	non_healthy = 29
+dice = 60.0120035	processed_time = 41.8900
+
+LG_0008 
+factor = 30
+finaltrain = 59
+train = 46	class_0 = 21	class_2 = 17	class_3 = 8	class_4 = 0
+valid = 13	class_0 = 9	class_2 = 3	class_3 = 1	class_4 = 0
+healthy = 30	non_healthy = 29
+dice = 74.9850474	processed_time = 39.6300
+
+LG_0008 
+factor = 30
+finaltrain = 59
+train = 46	class_0 = 26	class_2 = 14	class_3 = 6	class_4 = 0
+valid = 13	class_0 = 4	class_2 = 6	class_3 = 3	class_4 = 0
+healthy = 30	non_healthy = 29
+dice = 58.0379015	processed_time = 38.5100
+
+LG_0008 
+factor = 30
+finaltrain = 59
+train = 46	class_0 = 23	class_2 = 15	class_3 = 8	class_4 = 0
+valid = 13	class_0 = 7	class_2 = 5	class_3 = 1	class_4 = 0
+healthy = 30	non_healthy = 29
+dice = 54.0781374	processed_time = 42.8200
+
+LG_0008 
+factor = 30
+finaltrain = 59
+train = 46	class_0 = 23	class_2 = 15	class_3 = 8	class_4 = 0
+valid = 13	class_0 = 7	class_2 = 5	class_3 = 1	class_4 = 0
+healthy = 30	non_healthy = 29
+dice = 57.6494537	processed_time = 55.1900
+
+LG_0008 
+factor = 30
+finaltrain = 59
+train = 46	class_0 = 24	class_2 = 16	class_3 = 6	class_4 = 0
+valid = 13	class_0 = 6	class_2 = 4	class_3 = 3	class_4 = 0
+healthy = 30	non_healthy = 29
+dice = 63.6060498	processed_time = 34.5900
+
+LG_0008 
+factor = 30
+finaltrain = 59
+train = 46	class_0 = 23	class_2 = 16	class_3 = 7	class_4 = 0
+valid = 13	class_0 = 7	class_2 = 4	class_3 = 2	class_4 = 0
+healthy = 30	non_healthy = 29
+dice = 57.8267249	processed_time = 47.4300
+
+LG_0008 
+factor = 30
+finaltrain = 59
+train = 46	class_0 = 24	class_2 = 14	class_3 = 8	class_4 = 0
+valid = 13	class_0 = 6	class_2 = 6	class_3 = 1	class_4 = 0
+healthy = 30	non_healthy = 29
+dice = 37.1770416	processed_time = 36.0800
+
+LG_0008 
+factor = 20
+finaltrain = 39
+train = 30	class_0 = 16	class_2 = 9	class_3 = 5	class_4 = 0
+valid = 9	class_0 = 4	class_2 = 4	class_3 = 1	class_4 = 0
+healthy = 20	non_healthy = 19
+dice = 41.6699787	processed_time = 38.1500
+
+LG_0008 
+factor = 20
+finaltrain = 39
+train = 30	class_0 = 16	class_2 = 9	class_3 = 5	class_4 = 0
+valid = 9	class_0 = 4	class_2 = 4	class_3 = 1	class_4 = 0
+healthy = 20	non_healthy = 19
+dice = 59.2280242	processed_time = 43.7400
+
+LG_0008 
+factor = 20
+finaltrain = 39
+train = 30	class_0 = 17	class_2 = 9	class_3 = 4	class_4 = 0
+valid = 9	class_0 = 3	class_2 = 4	class_3 = 2	class_4 = 0
+healthy = 20	non_healthy = 19
+dice = 54.4334785	processed_time = 34.8000
+
+LG_0008 
+factor = 20
+finaltrain = 39
+train = 30	class_0 = 15	class_2 = 10	class_3 = 5	class_4 = 0
+valid = 9	class_0 = 5	class_2 = 3	class_3 = 1	class_4 = 0
+healthy = 20	non_healthy = 19
+dice = 55.8890014	processed_time = 35.1000
+
+LG_0008 
+factor = 20
+finaltrain = 39
+train = 30	class_0 = 15	class_2 = 10	class_3 = 5	class_4 = 0
+valid = 9	class_0 = 5	class_2 = 3	class_3 = 1	class_4 = 0
+healthy = 20	non_healthy = 19
+dice = 58.7075100	processed_time = 39.1600
+
+LG_0008 
+factor = 20
+finaltrain = 39
+train = 30	class_0 = 16	class_2 = 10	class_3 = 4	class_4 = 0
+valid = 9	class_0 = 4	class_2 = 3	class_3 = 2	class_4 = 0
+healthy = 20	non_healthy = 19
+dice = 62.5316652	processed_time = 53.8300
+
+LG_0008 
+factor = 20
+finaltrain = 39
+train = 30	class_0 = 14	class_2 = 11	class_3 = 5	class_4 = 0
+valid = 9	class_0 = 6	class_2 = 2	class_3 = 1	class_4 = 0
+healthy = 20	non_healthy = 19
+dice = 28.8656765	processed_time = 39.4000
+
+LG_0008 
+factor = 20
+finaltrain = 39
+train = 30	class_0 = 15	class_2 = 11	class_3 = 4	class_4 = 0
+valid = 9	class_0 = 5	class_2 = 2	class_3 = 2	class_4 = 0
+healthy = 20	non_healthy = 19
+dice = 53.5426257	processed_time = 35.8000
+
+LG_0008 
+factor = 20
+finaltrain = 39
+train = 30	class_0 = 17	class_2 = 8	class_3 = 5	class_4 = 0
+valid = 9	class_0 = 3	class_2 = 5	class_3 = 1	class_4 = 0
+healthy = 20	non_healthy = 19
+dice = 65.1877326	processed_time = 37.9400
+
+LG_0008 
+factor = 20
+finaltrain = 39
+train = 30	class_0 = 14	class_2 = 13	class_3 = 3	class_4 = 0
+valid = 9	class_0 = 6	class_2 = 0	class_3 = 3	class_4 = 0
+healthy = 20	non_healthy = 19
+dice = 63.5860873	processed_time = 42.6300
+
+LG_0008 
+factor = 10
+finaltrain = 19
+train = 14	class_0 = 8	class_2 = 5	class_3 = 1	class_4 = 0
+valid = 5	class_0 = 2	class_2 = 1	class_3 = 2	class_4 = 0
+healthy = 10	non_healthy = 9
+dice = 62.0939208	processed_time = 34.1100
+
+LG_0008 
+factor = 10
+finaltrain = 19
+train = 14	class_0 = 7	class_2 = 4	class_3 = 3	class_4 = 0
+valid = 5	class_0 = 3	class_2 = 2	class_3 = 0	class_4 = 0
+healthy = 10	non_healthy = 9
+dice = 45.1771874	processed_time = 42.0100
+
+LG_0008 
+factor = 10
+finaltrain = 19
+train = 14	class_0 = 8	class_2 = 4	class_3 = 2	class_4 = 0
+valid = 5	class_0 = 2	class_2 = 2	class_3 = 1	class_4 = 0
+healthy = 10	non_healthy = 9
+dice = 59.4149801	processed_time = 43.3200
+
+LG_0008 
+factor = 10
+finaltrain = 19
+train = 14	class_0 = 8	class_2 = 6	class_3 = 0	class_4 = 0
+valid = 5	class_0 = 2	class_2 = 0	class_3 = 3	class_4 = 0
+healthy = 10	non_healthy = 9
+dice = 0.0000000	processed_time = 43.6000
+
+LG_0008 
+factor = 10
+finaltrain = 19
+train = 14	class_0 = 7	class_2 = 5	class_3 = 2	class_4 = 0
+valid = 5	class_0 = 3	class_2 = 1	class_3 = 1	class_4 = 0
+healthy = 10	non_healthy = 9
+dice = 32.5109400	processed_time = 50.6100
+
+LG_0008 
+factor = 10
+finaltrain = 19
+train = 14	class_0 = 7	class_2 = 5	class_3 = 2	class_4 = 0
+valid = 5	class_0 = 3	class_2 = 1	class_3 = 1	class_4 = 0
+healthy = 10	non_healthy = 9
+dice = 44.3009574	processed_time = 38.7700
+
+LG_0008 
+factor = 10
+finaltrain = 19
+train = 14	class_0 = 6	class_2 = 6	class_3 = 2	class_4 = 0
+valid = 5	class_0 = 4	class_2 = 0	class_3 = 1	class_4 = 0
+healthy = 10	non_healthy = 9
+dice = 44.0631570	processed_time = 59.4600
+
+LG_0008 
+factor = 10
+finaltrain = 19
+train = 14	class_0 = 8	class_2 = 4	class_3 = 2	class_4 = 0
+valid = 5	class_0 = 2	class_2 = 2	class_3 = 1	class_4 = 0
+healthy = 10	non_healthy = 9
+dice = 60.7676044	processed_time = 43.3800
+
+LG_0008 
+factor = 10
+finaltrain = 19
+train = 14	class_0 = 7	class_2 = 4	class_3 = 3	class_4 = 0
+valid = 5	class_0 = 3	class_2 = 2	class_3 = 0	class_4 = 0
+healthy = 10	non_healthy = 9
+dice = 36.0367113	processed_time = 52.4800
+
+LG_0008 
+factor = 10
+finaltrain = 19
+train = 14	class_0 = 9	class_2 = 4	class_3 = 1	class_4 = 0
+valid = 5	class_0 = 1	class_2 = 2	class_3 = 2	class_4 = 0
+healthy = 10	non_healthy = 9
+dice = 56.3314261	processed_time = 40.0400
+
+LG_0008 
+factor = 10
+finaltrain = 19
+train = 14	class_0 = 9	class_2 = 4	class_3 = 1	class_4 = 0
+valid = 5	class_0 = 1	class_2 = 2	class_3 = 2	class_4 = 0
+healthy = 10	non_healthy = 9
+dice = 56.3314261	processed_time = 40.0400
+
