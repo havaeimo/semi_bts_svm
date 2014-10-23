@@ -2566,3 +2566,11 @@ valid = 22	class_0 = 11	class_2 = 8	class_3 = 3	class_4 = 0
 healthy = 50	non_healthy = 49
 dice = 64.9036736	processed_time = 61.7100
 
+LG_0008 
+factor = 40
+finaltrain = 79
+train = 61	class_0 = 33	class_2 = 20	class_3 = 8	class_4 = 0
+valid = 18	class_0 = 7	class_2 = 7	class_3 = 4	class_4 = 0
+healthy = 40	non_healthy = 39
+dice = 61.3547045	processed_time = 48.9500
+

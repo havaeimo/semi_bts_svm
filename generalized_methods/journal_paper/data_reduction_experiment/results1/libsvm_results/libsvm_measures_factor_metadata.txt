@@ -2214,3 +2214,11 @@ valid = 132	class_0 = 75	class_2 = 31	class_3 = 20	class_4 = 6
 healthy = 300	non_healthy = 298
 dice = 81.3107879	processed_time = 58.7400
 
+HG_0001 
+factor = 300
+finaltrain = 598
+train = 466	class_0 = 229	class_2 = 131	class_3 = 71	class_4 = 35
+valid = 132	class_0 = 71	class_2 = 30	class_3 = 22	class_4 = 9
+healthy = 300	non_healthy = 298
+dice = 79.5088276	processed_time = 54.0600
+
