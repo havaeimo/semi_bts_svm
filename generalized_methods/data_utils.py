@@ -11,7 +11,7 @@ import time
 import pdb
 import random
 def subsample(signal,decimation):
-    random.seed
+    random.seed()
     random.shuffle(signal)
     #if decimation == 'factor':
     #    l_sig = len(signal)
@@ -30,18 +30,18 @@ def data_reduction(fulltrain,factor):
     full_train_2 = [e for e in full_train if e[1]=='2']
     full_train_4 = [en for en in full_train if en[1]=='4']
     subsampled_training = []
-    len_tumor = len(full_train3) + len(full_train2) + len(full_train4)
-    freq_3 = len(full_train3)/len_tumor
-    freq_2 = len(full_train2)/len_tumor
-    freq_4 = len(full_train4)/len_tumor
+    len_tumor = len(full_train_3) + len(full_train_2) + len(full_train_4)
+    freq_3 = (0.0+len(full_train_3))/len_tumor
+    freq_2 = (0.0+len(full_train_2))/len_tumor
+    freq_4 = (0.0+len(full_train_4))/len_tumor
     assert freq_3 + freq_2 + freq_4 == 1
     subsampled_training.extend(subsample(full_train_0,factor))
-    subsampled_training.extend(subsample(full_train_2,factor*freq_2))
-    subsampled_training.extend(subsample(full_train_3,factor*freq_3))
-    subsampled_training.extend(subsample(full_train_4,factor*freq_4))
+    subsampled_training.extend(subsample(full_train_2,int(factor*freq_2)))
+    subsampled_training.extend(subsample(full_train_3,int(factor*freq_3)))
+    subsampled_training.extend(subsample(full_train_4,int(factor*freq_4)))
     print "Shuffling data..."
     length_interaction = len(subsampled_training)
-    random.seed('1234')
+    random.seed()
     random.shuffle(subsampled_training)
   
     # Split data into train,valid,test (70% train, 20% valid, 10% test)

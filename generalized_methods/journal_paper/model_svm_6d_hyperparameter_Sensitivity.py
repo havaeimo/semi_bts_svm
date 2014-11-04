@@ -1,3 +1,4 @@
+
 import numpy as np
 import os
 import sys
@@ -83,9 +84,70 @@ def svm_model(dataset_directory, dataset_name, params, datasets):
     svm.train(finaltrainset)
     testset = datasets['testset']
     outputs, costs = svm.test(testset)
-
+    dice_mean = train_and_test(svm, datasets)
     end_time = time.clock()
     processing_time = end_time - start_time
+    return [dice_mean , processing_time]
+
+
+
+def svm_model2(params, datasets):
+    from sklearn import svm
+
+    def My_kernel(x,y):
+ 
+        #gamma1 = 1
+        #gamma2 = 9  # gamma1 and gamma2 are std^2
+        x1 = x[:,0:3]
+        y1 = y[:,0:3]
+        # constructing the gram matrix        
+        d1 = -2 * np.dot(x1,y1.T) + np.tile((x1 * x1).sum(axis=1).reshape(len(x1),1) , (1,len(y1))) + np.tile((y1 * y1).sum(axis=1).reshape(1,len(y1)) , (len(x1),1)) 
+
+        #kernel_1 = 1/(np.sqrt(gamma1*2*3.14))* np.exp( - d1 /(2*gamma1))
+        kernel_1 = np.exp(-gamma1 * d1 )
+        
+        x2 = x[:,3:]
+        y2 = y[:,3:]
+        d2 = -2 * np.dot(x2,y2.T) + np.tile((x2 * x2).sum(axis=1).reshape(len(x2),1) , (1,len(y2))) + np.tile((y2 * y2).sum(axis=1).reshape(1,len(y2)) , (len(x2),1)) 
+
+        #kernel_2 = 1/(np.sqrt(gamma1*2*3.14))* np.exp(- d2 /(2*gamma2))
+        kernel_2 =  np.exp(-gamma2 * d2 )
+
+        return kernel_1 * kernel_2
+
+
+
+    start_time = time.clock()
+    use_weights = False    
+    if use_weights:
+        label_weights = finaltrainset.metadata['label_weights']
+    else:
+        label_weights = None
+        
+    output_probabilities = True # Or False!
+    try:
+        # Create SVMClassifier with hyper-parameters
+        gamma1 = params[0]
+        gamma2 = params[1]
+        clf = svm.SVC( shrinking=True, kernel=My_kernel , gamma=0 ,coef0=0,C=params[2],class_weight=label_weights, probability=output_probabilities)
+    except Exception as inst:
+        print "Error while instantiating SVMClassifier (required hyper-parameters are probably missing)"
+        print inst
+        sys.exit()
+    dice_mean = train_and_test_model_svm_sklearn(clf, datasets)
+    end_time = time.clock()
+    processing_time = end_time - start_time
+    return [dice_mean , processing_time]
+
+
+
+def train_and_test(svm,datasets):
+
+    testset = datasets['testset']
+    finaltrainset = datasets['finaltrainset']
+    svm.train(finaltrainset)
+    outputs, costs = svm.test(testset)
+    
 
     id_to_class = {}
     for label, id in testset.class_to_id.iteritems():
@@ -101,5 +163,56 @@ def svm_model(dataset_directory, dataset_name, params, datasets):
     
     (dice, jaccard, precision, recall) = compute_statistics.compute_eval_multilabel_metrics(auto_lbl, lbl)
     dice = dice[~np.isnan(dice)]
-    return [dice.mean(), processing_time]
+    return dice.mean()
+
+
+
+def train_and_test_model_svm_sklearn(clf,datasets):
+
+    testset = datasets['testset']
+    finaltrainset = datasets['finaltrainset']
+    X_test = np.array([x for x,y in testset])
+    Y_test = np.array([y for x,y in testset])
+    X_finaltrain = np.array([x for x,y in finaltrainset])
+    Y_finaltrain = np.array([y for x,y in finaltrainset])
     
+    clf.fit(X_finaltrain, Y_finaltrain)
+
+    print 'Testing...'
+
+    outputs = np.zeros(len(X_test))
+    probabilities = np.zeros((len(X_test),len(clf.classes_)))
+
+    minibatch_size = int(len(X_test)/10000)+1;
+    chunked_testset =  np.array_split( X_test,minibatch_size)
+    #ipdb.set_trace()
+    outputs = np.array([]).reshape(1,-1)
+    probabilities = np.array([]).reshape(-1,len(clf.classes_))
+
+    for i,test_batch in enumerate(chunked_testset):
+
+        output_batch = clf.predict(test_batch)
+        outputs = np.c_[outputs, output_batch.reshape(1,-1)]
+
+        probabilities_batch = clf.predict_proba(test_batch)
+        probabilities = np.r_[probabilities, probabilities_batch.reshape(-1, len(clf.classes_))]
+
+
+    outputs = outputs[0]
+    
+    id_to_class = {}
+    for label, id in testset.class_to_id.iteritems():
+        id_to_class[id] = label
+
+     # Ground truth
+    lbl = datasets['ground_truth']
+    auto_lbl = np.array([int(id_to_class[output]) for output in outputs]) # Predicted labels
+
+    len_bg = testset.metadata['len_bg']
+    lbl = np.append(lbl, [0]*len_bg)
+    auto_lbl = np.append(auto_lbl, [0]*len_bg)
+
+    (dice, jaccard, precision, recall) = compute_statistics.compute_eval_multilabel_metrics(auto_lbl, lbl)
+    dice = dice[~np.isnan(dice)]
+    print dice.mean()
+    return dice.mean()
