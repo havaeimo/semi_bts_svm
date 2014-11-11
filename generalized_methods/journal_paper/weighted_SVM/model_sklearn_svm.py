@@ -186,7 +186,7 @@ outputs = np.array([]).reshape(1,-1)
 probabilities = np.array([]).reshape(-1,len(clf.classes_))
 
 for i,test_batch in enumerate(chunked_testset):
-    
+    pdb.set_trace()
     output_batch = best_clf.predict(test_batch)
     outputs = np.c_[outputs, output_batch.reshape(1,-1)]
 
