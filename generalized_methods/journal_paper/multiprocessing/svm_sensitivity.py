@@ -42,10 +42,12 @@ def find_best_model(hyperparams_grid):
     for params in hyperparams_grid:
         try:
             # Create SVMClassifier with hyper-parameters
+            pdb.set_trace()
             svm = SVMClassifier(shrinking=True, kernel=params[0],degree=params[1],gamma=params[2],coef0=params[3],C=params[4],label_weights=label_weights, output_probabilities=output_probabilities)
         except Exception as inst:
             print "Error while instantiating SVMClassifier (required hyper-parameters are probably missing)"
             print inst
+            pdb.set_trace()
             sys.exit()
 
         svm.train(trainset)
@@ -183,6 +185,7 @@ if dataset_dir is None:
     multiprocessing_start_time = time.time()
 
     print 'finidng hyper-parameters...'
+    '''
     results = pool.map(find_best_model, (core_params[0],core_params[1],core_params[2],core_params[3],core_params[4],core_params[5],core_params[6],core_params[7]))
     er = [t[1] for t in results]
     er = np.array(er)
@@ -194,12 +197,13 @@ if dataset_dir is None:
     multiprocessing_processing_time = multiprocessing_end_time - multiprocessing_start_time
     print 'finidng hyper-parameters took ' +str(multiprocessing_processing_time)+' seconds'
     '''
+
     singlethread_start_time = time.clock()
     best_params = find_best_model(hyperparams_grid)
     singlethread_end_time = time.clock()
     singlethread_processing_time = singlethread_end_time - singlethread_start_time
     #dice_g , processed_timeg = svm_model(dataset_directory, brain, params, datasets)
-    '''
+    
     print 'training...'
     
     len_testset_core = np.int(np.ceil(len(testset)/(cores*1.0)))

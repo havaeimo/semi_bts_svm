@@ -8,7 +8,7 @@ import mlpython.datasets.store as dataset_store
 from mlpython.learners.third_party.libsvm.classification import SVMClassifier
 import compute_statistics
 import time
-import pdb
+#import pdb
 import random
 def subsample(signal,decimation):
     random.seed()
@@ -236,3 +236,37 @@ def load_data(dir_path, input_size=6, targets=set(['0','1','2','3','4']), train_
         
     return {'train':(train_data,train_meta),'valid':(valid_data,valid_meta), 'finaltrain':(finaltrain_data,finaltrain_meta),'test':(test_data,test_meta)}
 
+
+
+def create_datasets(all_data):
+    train_data, train_metadata = all_data['train']
+    valid_data, valid_metadata = all_data['valid']
+    finaltrain_data, finaltrain_metadata = all_data['finaltrain']
+    test_data, test_metadata = all_data['test']
+    lbl = np.array([int(data[1]) for data in test_data])
+    spatial_dimensions = 1
+
+    def reduce_dimensionality(mlproblem_data, mlproblem_metadata):
+        mlproblem_metadata['input_size'] = 3  # we need to change the input size from 6 to 3. 
+        return [mlproblem_data[0][:3] , mlproblem_data[1]]
+
+    if spatial_dimensions ==1:      
+        import mlpython.mlproblems.classification as mlpb
+        trainset = mlpb.ClassificationProblem(train_data, train_metadata)
+        validset = trainset.apply_on(valid_data,valid_metadata)
+        finaltrainset = trainset.apply_on(finaltrain_data,finaltrain_metadata)
+        testset = trainset.apply_on(test_data,test_metadata)
+
+    elif spatial_dimensions ==0:
+        import mlpython.mlproblems.generic as mlpg
+        trainset = mlpg.PreprocessedProblem(data = train_data , metadata = train_metadata , preprocess = reduce_dimensionality)
+        validset = trainset.apply_on(valid_data, valid_metadata)
+        testset = trainset.apply_on(test_data, test_metadata)
+        finaltrainset = trainset.apply_on(finaltrain_data, finaltrain_metadata)
+        import mlpython.mlproblems.classification as mlpb
+        trainset = mlpb.ClassificationProblem(trainset, trainset.metadata)
+        validset = trainset.apply_on(validset,validset.metadata)
+        finaltrainset = trainset.apply_on(finaltrainset,finaltrainset.metadata)
+        testset = trainset.apply_on(testset,testset.metadata)
+
+    return {'trainset':trainset,'validset':validset ,'finaltrainset':finaltrainset, 'testset':testset ,'ground_truth':lbl}

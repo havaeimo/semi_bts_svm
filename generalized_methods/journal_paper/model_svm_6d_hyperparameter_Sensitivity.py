@@ -4,7 +4,6 @@ import os
 import sys
 import fcntl
 import copy
-import pdb
 sys.path.append('/home/local/USHERBROOKE/havm2701/git.repos/semi_bts_svm/semi_bts_svm/generalized_methods/')
 from string import Template
 import mlpython.datasets.store as dataset_store
@@ -12,7 +11,7 @@ from mlpython.learners.third_party.libsvm.classification import SVMClassifier
 import compute_statistics
 import time
 import data_utils
-import pdb
+#import pdb
 #import ipdb ipdb
 def load_data(dataset_directory , dataset_name):
     print "Loading datasets ..."
@@ -55,7 +54,7 @@ def load_data(dataset_directory , dataset_name):
         finaltrainset = trainset.apply_on(finaltrainset,finaltrainset.metadata)
         testset = trainset.apply_on(testset,testset.metadata)
 
-    return {'finaltrainset':finaltrainset, 'testset':testset ,'ground_truth':lbl}    
+    return {'finaltrainset':finaltrainset, 'testset':testset ,'ground_truth':lbl, 'validset':validset, 'trainset':trainset}    
 
 def compute_error_mean_and_sterror(costs):
     classif_errors = np.hstack(costs)
@@ -63,6 +62,35 @@ def compute_error_mean_and_sterror(costs):
     classif_sterror = classif_errors.std(ddof=1)/np.sqrt(classif_errors.shape[0])
 
     return classif_mean, classif_sterror
+
+def find_best_model(hyperparams_grid,datasets):
+    
+    best_val_error = np.inf
+    validset = datasets['validset']
+    trainset = datasets['trainset']
+    output_probabilities = True 
+    label_weights = None
+    
+    
+    for params in hyperparams_grid:
+        try:
+            # Create SVMClassifier with hyper-parameters
+            svm = SVMClassifier(shrinking=True, kernel=params[0],degree=params[1],gamma=params[2],coef0=params[3],C=params[4],label_weights=label_weights, output_probabilities=output_probabilities)
+        except Exception as inst:
+            print "Error while instantiating SVMClassifier (required hyper-parameters are probably missing)"
+            print inst
+            sys.exit()
+
+        svm.train(trainset)
+        outputs, costs = svm.test(validset)
+    
+        errors = compute_error_mean_and_sterror(costs)
+        error = errors[0]
+    
+        if error < best_val_error:
+           best_val_error = error
+           best_hyperparams = params
+    return best_hyperparams   
 
 def svm_model(dataset_directory, dataset_name, params, datasets):
     start_time = time.clock()
@@ -80,10 +108,7 @@ def svm_model(dataset_directory, dataset_name, params, datasets):
         print "Error while instantiating SVMClassifier (required hyper-parameters are probably missing)"
         print inst
         sys.exit()
-    finaltrainset = datasets['finaltrainset']
-    svm.train(finaltrainset)
-    testset = datasets['testset']
-    outputs, costs = svm.test(testset)
+    
     dice_mean = train_and_test(svm, datasets)
     end_time = time.clock()
     processing_time = end_time - start_time
@@ -175,7 +200,7 @@ def train_and_test_model_svm_sklearn(clf,datasets):
     Y_test = np.array([y for x,y in testset])
     X_finaltrain = np.array([x for x,y in finaltrainset])
     Y_finaltrain = np.array([y for x,y in finaltrainset])
-    
+    st_time = time.time()
     clf.fit(X_finaltrain, Y_finaltrain)
 
     print 'Testing...'
@@ -183,12 +208,13 @@ def train_and_test_model_svm_sklearn(clf,datasets):
     outputs = np.zeros(len(X_test))
     probabilities = np.zeros((len(X_test),len(clf.classes_)))
 
-    minibatch_size = int(len(X_test)/10000)+1;
+    minibatch_size = int(len(X_test)/200000)+1;
+    #minibatch_size = 5
     chunked_testset =  np.array_split( X_test,minibatch_size)
-    #ipdb.set_trace()
+  
     outputs = np.array([]).reshape(1,-1)
     probabilities = np.array([]).reshape(-1,len(clf.classes_))
-
+     
     for i,test_batch in enumerate(chunked_testset):
 
         output_batch = clf.predict(test_batch)
@@ -197,7 +223,8 @@ def train_and_test_model_svm_sklearn(clf,datasets):
         probabilities_batch = clf.predict_proba(test_batch)
         probabilities = np.r_[probabilities, probabilities_batch.reshape(-1, len(clf.classes_))]
 
-
+    ed_time = time.time()
+    print 'timertookd='+ str(ed_time - st_time)
     outputs = outputs[0]
     
     id_to_class = {}

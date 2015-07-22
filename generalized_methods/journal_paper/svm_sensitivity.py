@@ -73,6 +73,7 @@ for brain in brain_names:
     for C in Cs:
         paramsc = ['rbf', 3, gamma, 0, C]
         dice_c , processed_timec = svm_model(dataset_directory, brain, paramsc, datasets)
+        pdb.set_trace()
         #if brain == 'LG_0008':
         #	pdb.set_trace()
 
